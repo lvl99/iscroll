@@ -40,7 +40,7 @@ var m = Math,
     hasTransform = !!vendor,
     hasTransitionEnd = prefixStyle('transition') in dummyStyle,
     
-    stopOnTouch = '<SELECT><INPUT><TEXTAREA><BUTTON>',
+   // stopOnTouch = '<SELECT><INPUT><TEXTAREA><BUTTON>',
 
 	RESIZE_EV = 'onorientationchange' in window ? 'orientationchange' : 'resize',
 	START_EV = hasTouch ? 'touchstart' : 'mousedown',
@@ -107,6 +107,7 @@ var m = Math,
 			topOffset: 0,
 			checkDOMChanges: false,		// Experimental
 			handleClick: true,
+			stopOnTouch:null,
 
 			// Scrollbar
 			hScrollbar: true,
@@ -348,7 +349,7 @@ iScroll.prototype = {
 			c1, c2;
 		
 		// Stops iscroll if touched a specific element
-		if (!that.enabled || stopOnTouch.match('<'+e.target.tagName+'>')) return;
+		if (!that.enabled || that.options.stopOnTouch.match('<'+e.target.tagName+'>')) return;
 
 		if (that.options.onBeforeScrollStart) that.options.onBeforeScrollStart.call(that, e);
 
